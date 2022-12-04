@@ -63,10 +63,72 @@ void pushPriority(int toPush){
 
 }
 
-// Pop Head
-// Pop Tail
-// Pop Middle
-// Search
+void popHead(){
+
+    if (Head == Tail){
+    
+        free(Head);
+        Head = Tail = NULL;
+    
+    } else {
+
+        Node* toDelete = Head;
+        Head = Head->next;
+        free(toDelete);
+        toDelete = NULL;
+
+    }
+
+}
+
+void popTail(){
+
+    if (Head == Tail){
+
+        free(Head);
+        Head = Tail = NULL;
+
+    } else {
+
+        Node* current = Head;
+        while (current->next != Tail) current = current->next;
+        Tail = current;
+        free(current->next);
+        current->next = NULL;
+
+    }
+
+}
+
+void pop(int toPop){
+
+    if (!Head) return;
+    if (Head->data == toPop) popHead();
+    else {
+
+        Node* current = Head;
+        while (current->next && current->next->data != toPop) current = current->next;
+        
+        if (current != Tail){
+            
+            Node* toDelete = current->next;
+            current->next = current->next->next;
+            free(toDelete);
+            toDelete = NULL;
+
+        }
+
+    }
+
+}
+
+Node* search(int toSearch){
+
+    Node *current = Head;
+    while (current && current->data != toSearch) current = current->next;
+    return current;
+
+}
 
 void printLinkedList(){
 
