@@ -32,6 +32,7 @@ int max(int a, int b) {
 }
 
 void updateHeight(Node *node) {
+  if (!node) return;
   node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
 }
 
@@ -126,7 +127,7 @@ Node* remove(Node* node, int age) {
     if (node->left == NULL && node->right == NULL) {
       free(node);
       node = NULL;
-    } else if (node->left != NULL || node->right != NULL) {
+    } else if (node->right && !node->left || !node->right && node->left) {
       free(node);
       node = node->left ? node->left : node->right;
     } else {
@@ -145,12 +146,15 @@ Node* remove(Node* node, int age) {
 }
 
 int main() {
-  Node* root = NULL;
-  root = insert(root, createNode("Adam", 20));
-  root = insert(root, createNode("Kevin", 19));
-  root = insert(root, createNode("Adam", 18));
 
-  printTree(root, 0);
+  Node *root = NULL;
+	root = insert(root, createNode("ABC", 10));
+	root = insert(root, createNode("DEF", 11));
+	root = insert(root, createNode("GHI", 12));
+	
+	root = remove(root, 12);
+	
+	printTree(root, 0);
 
   return 0;
 }
