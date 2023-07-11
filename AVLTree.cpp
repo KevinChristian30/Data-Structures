@@ -13,8 +13,8 @@ struct Node {
   Node *right;
 };
 
-Node* createNode(const char *name, int age) {
-  Node* newNode = (Node*) malloc(sizeof(Node));
+Node *createNode(const char *name, int age) {
+  Node *newNode = (Node *) malloc(sizeof(Node));
   strncpy(newNode->name, name, BUFFER_SIZE);
   newNode->age = age;
   newNode->height = 1;
@@ -40,7 +40,7 @@ int getBalanceFactor(Node *node) {
   return node ? getHeight(node->left) - getHeight(node->right) : 0;
 }
 
-Node* rightRotate(Node *node) {
+Node *rightRotate(Node *node) {
   Node *newRoot = node->left;
   Node *newRootsOldRight = newRoot->right;
 
@@ -53,7 +53,7 @@ Node* rightRotate(Node *node) {
   return newRoot;
 }
 
-Node* leftRotate(Node* node) {
+Node *leftRotate(Node *node) {
   Node *newRoot = node->right;
   Node *newRootsOldLeft = newRoot->left;
 
@@ -66,7 +66,7 @@ Node* leftRotate(Node* node) {
   return newRoot;
 }
 
-Node* balance(Node *node) {
+Node *balance(Node *node) {
   int balanceFactor = getBalanceFactor(node);
 
   if (balanceFactor > 1) {
@@ -80,7 +80,7 @@ Node* balance(Node *node) {
   return node;
 }
 
-Node* insert(Node *node, Node *toInsert) {
+Node *insert(Node *node, Node *toInsert) {
   if (!node) return toInsert;
 
   if (toInsert->age < node->age) node->left = insert(node->left, toInsert);
@@ -89,7 +89,6 @@ Node* insert(Node *node, Node *toInsert) {
   updateHeight(node);
 
   return balance(node);
-  // return node;
 }
 
 void printTree(Node *node, int depth) {
@@ -103,7 +102,7 @@ void printTree(Node *node, int depth) {
   printTree(node->right, depth + 1);
 }
 
-Node* search(Node *node, int age) {
+Node *search(Node *node, int age) {
   if (!node) return NULL;
 
   if (node->age == age) return node;
@@ -112,13 +111,13 @@ Node* search(Node *node, int age) {
 }
 
 void update(Node *root, int ageToUpdate, char *newName) {
-  Node* toUpdate = search(root, ageToUpdate);
+  Node *toUpdate = search(root, ageToUpdate);
 
   if (!toUpdate) printf("Node Not Found");
   else strncpy(toUpdate->name, newName, BUFFER_SIZE);
 }
 
-Node* remove(Node* node, int age) {
+Node *remove(Node *node, int age) {
   if (!node) return NULL;
 
   if (age < node->age) node->left = remove(node->left, age);
@@ -146,15 +145,5 @@ Node* remove(Node* node, int age) {
 }
 
 int main() {
-
-  Node *root = NULL;
-	root = insert(root, createNode("ABC", 10));
-	root = insert(root, createNode("DEF", 11));
-	root = insert(root, createNode("GHI", 12));
-	
-	root = remove(root, 12);
-	
-	printTree(root, 0);
-
   return 0;
 }
