@@ -68,7 +68,7 @@ Node *leftRotate(Node *node) {
 
 Node *balance(Node *node) {
   int balanceFactor = getBalanceFactor(node);
-
+  
   if (balanceFactor > 1) {
     if (getBalanceFactor(node->left) < -1) node->left = leftRotate(node->left);
     node = rightRotate(node);

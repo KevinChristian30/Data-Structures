@@ -103,7 +103,7 @@ void popTail() {
 
   Tail = behindTail;
   free(Tail->next);
-  Tail->next = NULL;
+  Tail->next = NULL;  
 }
 
 void remove(int toRemove) {

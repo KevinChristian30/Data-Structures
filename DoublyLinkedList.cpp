@@ -9,7 +9,7 @@ struct Node {
 };
 
 Node *Head = NULL;
-Node *Tail= NULL;
+Node *Tail = NULL;
 
 Node *createNode(Node node) {
   Node *newNode = (Node*) malloc(sizeof(Node));
@@ -132,7 +132,7 @@ void remove(int toRemove) {
     current = NULL;
   }
 }
- 
+
 int main() {  
   return 0;
 }

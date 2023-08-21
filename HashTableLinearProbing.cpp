@@ -41,7 +41,7 @@ int findIndexByName(char toFind[]){
   if (strcmp(HASHTABLE[index].name, toFind) == 0) return index;
     
   for (int i = index + 1; i != index; i = (i + 1) % TABLESIZE)
-      if (strcmp(HASHTABLE[i].name, toFind) == 0) return i;
+    if (strcmp(HASHTABLE[i].name, toFind) == 0) return i;
 
   return -1;
 }

@@ -106,5 +106,11 @@ Node *remove(Node *node, int age) {
 }
 
 int main() {
+  Node *root = NULL;
+  root = insert(root, createNode("ASD", 10));
+  root = insert(root, createNode("ASD", 20));
+  root = insert(root, createNode("ASD", 30));
+
+  printTree(root, 0);
   return 0;
 }

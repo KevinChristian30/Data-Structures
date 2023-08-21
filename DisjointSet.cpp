@@ -46,8 +46,10 @@ bool isCyclic(Graph graph) {
     int sourceParent = find(parents, sourceIndex);
     int destinationParent = find(parents, destinationIndex);
 
-    if (sourceParent == destinationParent) return true;
-
+    if (sourceParent == destinationParent) {
+      free(parents);
+      return true;
+    }
     _union(parents, sourceParent, destinationParent);
   }
 
